@@ -1,0 +1,51 @@
+.nav__list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+}
+
+.nav__list-item:not(:last-of-type) {
+  margin-right: 40px;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.nav__link:hover,
+.nav__link:focus {
+  opacity: 0.6;
+  color: #000;
+}
+
+.nav__link:active {
+  opacity: 0.3;
+}
+
+.nav__link::before {
+  content: "";
+  display: block;
+  margin-right: 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.nav__link--cart::before {
+  width: 10px;
+  height: 14px;
+  background-image: url(../../assets/img/cart-header.svg);
+  background-position: left 1px;
+}
+
+.nav__link--into::before {
+  width: 10px;
+  height: 14px;
+  background-image: url(../../assets/img/into-header.svg);
+  background-position: left 1px;
+}

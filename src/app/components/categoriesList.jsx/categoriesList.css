@@ -1,0 +1,24 @@
+.categories {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  margin-right: 50px;
+}
+
+.categories__item {
+  min-height: 40px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  border-bottom: 1px solid steelblue;
+  cursor: pointer;
+}
+
+.categories__item:hover,
+.categories__item:focus {
+  background-color: steelblue;
+  color: lime;
+}

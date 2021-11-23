@@ -1,15 +1,18 @@
-import AddPage from "./pages/addPage/addPage";
-import CartPage from "./pages/cartPage/cartPage";
-import CatalogPage from "./pages/catalogPage/catalogPage";
-import EditPage from "./pages/editPage/editPage";
-import LoginPage from "./pages/loginPage/loginPage";
+import AddProduct from "./layouts/addProduct/addProduct";
+import Cart from "./layouts/cart/cart";
+import Login from "./layouts/login/login";
+import Products from "./layouts/products/products";
 
 const routes = [
-  { path: "/add", name: "Add", component: AddPage },
-  { path: "/cart", name: "Cart", component: CartPage },
-  { path: "/catalog", name: "catalog", component: CatalogPage },
-  { path: "/edit/:id", name: "Edit", component: EditPage },
-  { path: "/login", name: "Login", component: LoginPage }
+  { path: "/add", name: "add", component: AddProduct },
+  {
+    path: "/products/:productsId?/:isEdit?",
+    name: "products/:productsId/:",
+    component: Products,
+    display: false
+  },
+  { path: "/login", name: "login", component: Login },
+  { path: "/cart", name: "cart", component: Cart }
 ];
 
 export default routes;

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import api from "../../API/fake.api/item.api";
-import Product from "../product/product";
+import api from "../../../API/index";
+import Product from "../productPage/productPage";
 
-const ProductList = () => {
+const ProductListPage = () => {
   const [products, setProducts] = useState();
 
-  useEffect(() => api.fetchAll().then((data) => setProducts(data)));
+  useEffect(() => api.products.fetchAll().then((data) => setProducts(data)));
 
   return (
     <ul className="product__list">
@@ -15,4 +15,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default ProductListPage;

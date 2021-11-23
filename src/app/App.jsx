@@ -1,12 +1,16 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import "./app.css";
-import Cart from "./components/cart/cart";
-import Catalog from "./components/catalog/catalog";
-import Login from "./components/login/login";
-import Logo from "./components/logo/logo";
-import NavBar from "./components/navBar/navBar";
-import Search from "./components/search/search";
+import Logo from "./components/ui/logo/logo";
+import NavBar from "./components/ui/navBar/navBar";
+import Search from "./components/ui/search/search";
+import routes from "./routes";
+
+const getRoutes = (routes) => {
+  return routes.map((route, ind) => {
+    return <Route path={route.path} component={route.component} key={ind} />;
+  });
+};
 
 function App() {
   return (
@@ -19,9 +23,8 @@ function App() {
         <NavBar />
       </header>
       <Switch>
-        <Route path="/cart" component={Cart} />
-        <Route path="/login" component={Login} />
-        <Route path="/" exact component={Catalog} />
+        {getRoutes(routes)}
+        <Redirect to="/products" />
       </Switch>
     </>
   );

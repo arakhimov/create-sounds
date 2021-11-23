@@ -39,13 +39,13 @@
 .nav__link--cart::before {
   width: 10px;
   height: 14px;
-  background-image: url(../../assets/img/cart-header.svg);
+  background-image: url(../../../assets/img/cart-header.svg);
   background-position: left 1px;
 }
 
-.nav__link--into::before {
+.nav__link--login::before {
   width: 10px;
   height: 14px;
-  background-image: url(../../assets/img/into-header.svg);
+  background-image: url(../../../assets/img/into-header.svg);
   background-position: left 1px;
 }

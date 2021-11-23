@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true
   },
-  extends: ["plugin:react/recommended", "standard"],
+  extends: ["plugin:react/recommended", "google"],
   parserOptions: {
     ecmaFeatures: {
       jsx: true
@@ -13,8 +13,22 @@ module.exports = {
   },
   plugins: ["react"],
   rules: {
+    "quote-props": ["error", "as-needed"],
     semi: [2, "always"],
     quotes: ["error", "double", { allowTemplateLiterals: true }],
+    "object-curly-spacing": ["error", "always"],
+    "require-jsdoc": [
+      "error",
+      {
+        require: {
+          FunctionDeclaration: false,
+          MethodDefinition: false,
+          ClassDeclaration: false,
+          ArrowFunctionExpression: false,
+          FunctionExpression: false
+        }
+      }
+    ],
     "comma-dangle": ["error", "never"],
     "space-before-function-paren": [
       "error",

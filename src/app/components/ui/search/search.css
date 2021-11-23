@@ -24,7 +24,7 @@
   height: 12px;
   margin-right: 22px;
   object-fit: contain;
-  background-image: url("../../assets/img/search.svg");
+  background-image: url("../../../assets/img/search.svg");
 }
 
 .search__field {

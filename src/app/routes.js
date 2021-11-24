@@ -6,8 +6,8 @@ import Products from "./layouts/products/products";
 const routes = [
   { path: "/add", name: "add", component: AddProduct },
   {
-    path: "/products/:productsId?/:isEdit?",
-    name: "products/:productsId/:",
+    path: "/products/:productId?/:isEdit?",
+    name: "products",
     component: Products,
     display: false
   },

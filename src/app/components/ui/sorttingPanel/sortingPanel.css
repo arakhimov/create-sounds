@@ -1,0 +1,42 @@
+.sorting-panel {
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  padding-left: 56px;
+  padding-right: 32px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.sorting-panel__title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 0;
+  margin-right: 30px;
+}
+
+.sorting-panel__method-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  flex-grow: 2;
+}
+
+.sorting-panel__type-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.sorting-panel__button {
+  background-color: transparent;
+  border: none;
+}
+
+.sorting-panel__button--active,
+.sorting-panel__button:hover,
+.sorting-panel__button:focus {
+  color: firebrick;
+}

@@ -1,17 +1,34 @@
-import React, { useEffect, useState } from "react";
-import api from "../../../API/index";
-import Product from "../productPage/productPage";
+import React from "react";
+import { PRODUCTS_PER_PAGE } from "../../../constants";
+import { useProducts } from "../../../hooks/useProducts";
+import Pagination from "../../common/pagination/pagination";
+import Product from "../../ui/product/product";
+import SortingPanel from "../../ui/sorttingPanel/sortingPanel";
+import "./productListPage.css";
 
 const ProductListPage = () => {
-  const [products, setProducts] = useState();
-
-  useEffect(() => api.products.fetchAll().then((data) => setProducts(data)));
+  const {
+    currentPageProducts: products,
+    filteredProducts,
+    currentPage,
+    handleChangeCurrentPage,
+    changeSortType
+  } = useProducts();
 
   return (
-    <ul className="product__list">
-      {products &&
-        products.map((product) => <Product key={product._id} {...product} />)}
-    </ul>
+    <div className="products-catalog">
+      <SortingPanel onChangeType={changeSortType} />
+      <ul className="products-catalog__list">
+        {products &&
+          products.map((product) => <Product key={product._id} {...product} />)}
+      </ul>
+      <Pagination
+        items={filteredProducts.length}
+        pageSize={PRODUCTS_PER_PAGE}
+        currentPage={currentPage}
+        onChangePage={handleChangeCurrentPage}
+      />
+    </div>
   );
 };
 

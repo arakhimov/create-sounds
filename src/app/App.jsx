@@ -1,9 +1,13 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./app.css";
 import Logo from "./components/ui/logo/logo";
 import NavBar from "./components/ui/navBar/navBar";
-import Search from "./components/ui/search/search";
+import SearchField from "./components/ui/searchField/searchField";
+import { CategoriesProvider } from "./hooks/useCategories";
+import { ProductsProvider } from "./hooks/useProducts";
 import routes from "./routes";
 
 const getRoutes = (routes) => {
@@ -14,19 +18,25 @@ const getRoutes = (routes) => {
 
 function App() {
   return (
-    <>
-      <header className="d-flex align-items-center header">
-        <div className="header__wrapper">
-          <Logo />
-          <Search />
-        </div>
-        <NavBar />
-      </header>
-      <Switch>
-        {getRoutes(routes)}
-        <Redirect to="/products" />
-      </Switch>
-    </>
+    <ProductsProvider>
+      <CategoriesProvider>
+        <header className="header">
+          <div className="header__wrapper">
+            <Logo />
+            <SearchField
+              name="search"
+              placeholder="Поиск по наименованию или артикулу"
+            />
+          </div>
+          <NavBar />
+        </header>
+        <ToastContainer />
+        <Switch>
+          {getRoutes(routes)}
+          <Redirect to="/products" />
+        </Switch>
+      </CategoriesProvider>
+    </ProductsProvider>
   );
 }
 

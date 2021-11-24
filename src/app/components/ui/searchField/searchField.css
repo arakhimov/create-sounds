@@ -1,6 +1,7 @@
 .search {
-  width: 440px;
   display: flex;
+  flex-grow: 2;
+  margin-right: 30px;
 }
 
 .search:focus-within {
@@ -32,7 +33,8 @@
   width: 100%;
   border: none;
   outline: none;
-  opacity: 0.3;
+  background-color: inherit;
+  min-height: 40px;
 }
 
 .search__field:hover {
@@ -41,29 +43,4 @@
 
 .search__field:focus {
   opacity: 0.6;
-}
-
-.search__submit {
-  min-height: 40px;
-  border: 2px solid #000;
-  border-bottom: none;
-  background-color: transparent;
-  outline: none;
-  padding: 4px 12px;
-  text-transform: uppercase;
-  display: none;
-}
-
-.search__submit:hover,
-.search__submit:focus {
-  background-color: #000;
-  color: #fff;
-}
-
-.search__submit:active {
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.search:focus-within .search__submit {
-  display: block;
 }

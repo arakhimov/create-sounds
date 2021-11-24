@@ -34,6 +34,8 @@ module.exports = {
       "error",
       { anonymous: "always", named: "never" }
     ],
-    "multiline-ternary": ["error", "always-multiline"]
+    "multiline-ternary": ["error", "always-multiline"],
+    "linebreak-style": 0,
+    "object-curly-spacing": "off"
   }
 };

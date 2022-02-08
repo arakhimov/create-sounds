@@ -1,0 +1,38 @@
+.breadcrumbs {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.breadcrumbs__item {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbs__item:not(:last-of-type) {
+  margin-right: 12px;
+}
+
+.breadcrumbs__item:not(:last-of-type)::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  display: block;
+  background-image: url("../../../assets/img/arrow-right.svg");
+  background-repeat: no-repeat;
+  margin-left: 8px;
+}
+
+.breadcrumbs__link {
+  cursor: pointer;
+  box-sizing: border-box;
+  color: #192144;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.breadcrumbs__link:hover,
+.breadcrumbs__link:focus {
+  color: firebrick;
+  text-decoration: underline;
+}

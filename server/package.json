@@ -1,0 +1,22 @@
+{
+  "name": "create-sounds-server",
+  "version": "1.0.0",
+  "description": "NodeJS server",
+  "main": "app.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node app.js",
+    "serve": "cross-env NODE_ENV=development nodemon app.js"
+  },
+  "author": "arakhimov <artemiirakhimov@yandex.ru>",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "config": "^3.3.7",
+    "cross-env": "^7.0.3",
+    "express": "^4.17.2",
+    "mongoose": "^6.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

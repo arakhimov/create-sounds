@@ -1,4 +1,6 @@
 {
   "port": 8080,
-  "mongoUri": "mongodb+srv://arakhimov:create-sounds-1234@cluster0.y7gvu.mongodb.net/create-sounds-database?retryWrites=true&w=majority"
+  "mongoUri": "mongodb+srv://arakhimov:create-sounds-1234@cluster0.y7gvu.mongodb.net/create-sounds-database?retryWrites=true&w=majority",
+  "secureAccessToken": "recuperation",
+  "secureRefreshToken": "generation"
 }

@@ -1,0 +1,11 @@
+.login__submit {
+  color: #000;
+  text-decoration: none;
+}
+
+.login__submit:active,
+.login__submit:hover,
+.login__submit:focus {
+  color: firebrick;
+  text-decoration: underline;
+}

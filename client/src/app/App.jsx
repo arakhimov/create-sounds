@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./app.css";
@@ -34,8 +34,8 @@ function App() {
       <Switch>
         <CategoriesProvider>
           <DescriptionProvider>
+            {/* <Redirect to="/products" /> */}
             {getRoutes(routes)}
-            <Redirect to="/products" />
           </DescriptionProvider>
         </CategoriesProvider>
       </Switch>

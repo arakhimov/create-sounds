@@ -22,16 +22,22 @@ const Breadcrumbs = () => {
             "/" +
             rout)
     );
-
   const { getProductById } = useProducts();
   const currentProduct = getProductById(productId);
 
   const getNameRoute = (route) => {
-    if (/\/[a-z]+$/.test(route)) {
-      return routes.find((item) => item.path.includes(route)).name;
-    }
     if (/\/.*\/\d{8}\/isEdit/.test(route)) {
       return "Редактировать";
+    }
+    if (/login\/login/.test(route)) {
+      return "signIn";
+    }
+    if (/login\/register/.test(route)) {
+      return "signUp";
+    }
+    if (/\/[a-z]+$/.test(route)) {
+      const currentRoute = routes.find((item) => item.path.includes(route));
+      return currentRoute && currentRoute.name;
     }
     if (/\/\w*\/\d{8}$/.test(route)) {
       return currentProduct.name;

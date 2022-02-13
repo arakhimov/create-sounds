@@ -4,11 +4,6 @@ import Login from "./layouts/login/login";
 import Products from "./layouts/products/products";
 
 const routes = [
-  // {
-  //   path: "/products/",
-  //   name: "Товары",
-  //   Component: Products
-  // },
   {
     path: "/products/:productId?",
     name: "Товары",
@@ -21,12 +16,7 @@ const routes = [
     Component: Edit,
     display: false
   },
-  // {
-  //   path: "/edit/",
-  //   name: "Редактировать",
-  //   Component: Edit
-  // },
-  { path: "/login", name: "Профиль", Component: Login },
+  { path: "/login/:type?", name: "Профиль", Component: Login, display: false },
   { path: "/cart", name: "Корзина", Component: Cart }
 ];
 

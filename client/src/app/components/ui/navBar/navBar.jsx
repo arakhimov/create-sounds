@@ -17,6 +17,11 @@ const NavBar = () => {
             Редактировать
           </NavLink>
         </li>
+        <li className="nav__list-item">
+          <NavLink to="/login" className="nav__link">
+            Профиль
+          </NavLink>
+        </li>
         {routes.map((route, ind) => {
           if (route.display !== false) {
             return (

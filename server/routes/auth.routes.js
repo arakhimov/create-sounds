@@ -150,7 +150,7 @@ router.post("/token", async (req, res) => {
     if (isInvalidToken(data, dbToken)) {
       return res.status(401).json({
         error: {
-          message: "UN_AUTORIZED",
+          message: "UNAUTORIZED",
           code: 401
         }
       });

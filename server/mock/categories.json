@@ -1,13 +1,13 @@
 [
-  { "_id": "67rdca3eeb7f6fgeed471818", "name": "Щипковые" },
-  { "_id": "67rdca3eeb7f6fgeed471820", "name": "Смычковые" },
-  { "_id": "67rdca3eeb7f6fgeed471814", "name": "Струнные" },
-  { "_id": "67rdca3eeb7f6fgeed471822", "name": "Медные" },
-  { "_id": "67rdca3eeb7f6fgeed471824", "name": "Деревянные" },
-  { "_id": "67rdca3eeb7f6fgeed471829", "name": "Духовые" },
-  { "_id": "67rdpa3eeb7f6fgeed471821", "name": "Язычковые" },
-  { "_id": "17rdpa4eeb7f6fgeed471827", "name": "Ударные" },
-  { "_id": "27rdpа4eeb7f6fgeed471829", "name": "Клавишные" },
-  { "_id": "47rdpаdeeb7f6fgeed471823", "name": "Механические" },
-  { "_id": "67rdpfdeeb7f6fgeed474983", "name": "Электронные" }
+  { "categoryId": "67rdca3eeb7f6fgeed471818", "name": "Щипковые" },
+  { "categoryId": "67rdca3eeb7f6fgeed471820", "name": "Смычковые" },
+  { "categoryId": "67rdca3eeb7f6fgeed471814", "name": "Струнные" },
+  { "categoryId": "67rdca3eeb7f6fgeed471822", "name": "Медные" },
+  { "categoryId": "67rdca3eeb7f6fgeed471824", "name": "Деревянные" },
+  { "categoryId": "67rdca3eeb7f6fgeed471829", "name": "Духовые" },
+  { "categoryId": "67rdpa3eeb7f6fgeed471821", "name": "Язычковые" },
+  { "categoryId": "17rdpa4eeb7f6fgeed471827", "name": "Ударные" },
+  { "categoryId": "27rdpа4eeb7f6fgeed471829", "name": "Клавишные" },
+  { "categoryId": "47rdpаdeeb7f6fgeed471823", "name": "Механические" },
+  { "categoryId": "67rdpfdeeb7f6fgeed474983", "name": "Электронные" }
 ]

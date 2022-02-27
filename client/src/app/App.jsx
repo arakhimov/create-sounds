@@ -1,6 +1,6 @@
 /* eslint-disable multiline-ternary */
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./app.css";
@@ -18,11 +18,13 @@ const getRoutes = (routes) => {
     ) : (
       <Route path={path} component={Component} key={ind} />
     );
-    // return <Route path={path} component={Component} key={ind} />;
   });
 };
 
 function App() {
+  const history = useHistory();
+  history.push("/products");
+
   return (
     <>
       <header className="header">

@@ -2,7 +2,7 @@
   "name": "create-sounds",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/products",
+  "homepage": "/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.2",
     "@testing-library/jest-dom": "^5.14.1",

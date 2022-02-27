@@ -17,7 +17,7 @@ module.exports = async () => {
   }
 
   const product = await Product.find();
-  if (product.length !== productMock.length) {
+  if (product.length < productMock.length) {
     await createInitialEntity(Product, productMock);
   }
 };

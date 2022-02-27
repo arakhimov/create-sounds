@@ -2,15 +2,20 @@
 /* eslint-disable operator-linebreak */
 import PropTypes from "prop-types";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { handleChangeCurrentPage } from "../../../store/products";
 import "./pagination.css";
 
-const Pagination = ({ items, pageSize, currentPage, onChangePage }) => {
+const Pagination = ({ items, pageSize, currentPage }) => {
+  const dispatch = useDispatch();
   const pageAmount = Math.ceil(items / pageSize);
   const pages = new Array(pageAmount).fill(null).map((_, ind) => ind + 1);
 
   const handleSelectNextPage = () => {
     const nextPage = currentPage + 1;
-    onChangePage(nextPage <= pageAmount ? nextPage : currentPage);
+    dispatch(
+      handleChangeCurrentPage(nextPage <= pageAmount ? nextPage : currentPage)
+    );
   };
 
   return (
@@ -25,7 +30,7 @@ const Pagination = ({ items, pageSize, currentPage, onChangePage }) => {
                     "pagination__link" +
                     (currentPage === page ? " pagination__link--active" : "")
                   }
-                  onClick={() => onChangePage(page)}
+                  onClick={() => dispatch(handleChangeCurrentPage(page))}
                 >
                   {page}
                 </a>
@@ -60,8 +65,7 @@ const Pagination = ({ items, pageSize, currentPage, onChangePage }) => {
 Pagination.propTypes = {
   items: PropTypes.number,
   pageSize: PropTypes.number,
-  currentPage: PropTypes.number,
-  onChangePage: PropTypes.func
+  currentPage: PropTypes.number
 };
 
 export default Pagination;

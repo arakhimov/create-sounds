@@ -1,11 +1,19 @@
+/* eslint-disable operator-linebreak */
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthError, login } from "../../../store/users";
+import history from "../../../utils/history";
 import { validator } from "../../../utils/validator";
 import CheckBoxField from "../../common/form/checkBoxField";
 import TextField from "../../common/form/textField";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const [data, setData] = useState({ email: "", password: "", stayOn: false });
   const [errors, setErrors] = useState({});
+
+  const authError = useSelector(getAuthError());
+
   useEffect(() => validate(), [data]);
 
   const handleChange = (target) => {
@@ -45,6 +53,10 @@ const LoginForm = () => {
     if (!isValid) {
       return;
     }
+    const redirect = history.location.state
+      ? history.location.state.from.pathname
+      : "/products";
+    dispatch(login({ payload: data, redirect }));
   };
 
   return (
@@ -67,7 +79,7 @@ const LoginForm = () => {
       <CheckBoxField name="stayOn" value={data.stayOn} onChange={handleChange}>
         <p className="mb-0">Оставаться в системе</p>
       </CheckBoxField>
-      {/* {loginError && <p className="text-danger">{loginError}</p>} */}
+      {authError && <p className="text-danger">{authError}</p>}
 
       <button className="btn btn-primary" type="submit" disabled={!isValid}>
         Отправить

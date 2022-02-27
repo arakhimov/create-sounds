@@ -32,20 +32,11 @@ router.patch("/:userId", auth, async (req, res) => {
 });
 
 // получение текущего пользователя
-router.get("/:userId", auth, async (req, res) => {
+router.get("/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
-    if (userId === req.user._id) {
-      const currentUser = await User.findOne({ userId });
-      return res.status(200).send(currentUser);
-    } else {
-      return res.status(401).json({
-        error: {
-          message: "UNAUTORIZED",
-          code: 401
-        }
-      });
-    }
+    const currentUser = await User.findOne({ _id: userId });
+    return res.status(200).send(currentUser);
   } catch (error) {
     res.status(500).json({
       error: {

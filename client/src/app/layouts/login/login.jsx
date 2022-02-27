@@ -13,11 +13,9 @@ const Login = () => {
   );
 
   const handleToggleType = () => {
-    console.log(formType);
     setFormType((prevState) =>
       prevState === "register" ? "login" : "register"
     );
-    console.log(formType);
   };
 
   return (
@@ -28,7 +26,7 @@ const Login = () => {
           <div className="col-md-6 offset-md-3 shadow p-4">
             {formType === "login" ? (
               <>
-                <h1>Login</h1>
+                <h1>Войти</h1>
                 <LoginForm />
                 <p className="mt-3">
                   Already have account?&nbsp;
@@ -43,7 +41,7 @@ const Login = () => {
               </>
             ) : (
               <>
-                <h1>Regisration</h1>
+                <h1>Зарегистрироваться</h1>
                 <RegisterForm />
                 <p className="mt-3">
                   Don&apos;t have account?&nbsp;

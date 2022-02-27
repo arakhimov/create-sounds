@@ -1,11 +1,14 @@
 /* eslint-disable max-len */
-import PropTypes from "prop-types";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { setSortType } from "../../../store/products";
 import "./sortingPanel.css";
 
-const SortingPanel = ({ onChangeType }) => {
+const SortingPanel = () => {
+  const dispatch = useDispatch();
+
   const handleChangeSortType = ({ currentTarget }) => {
-    onChangeType(currentTarget.dataset.type);
+    dispatch(setSortType(currentTarget.dataset.type));
   };
 
   return (
@@ -60,10 +63,6 @@ const SortingPanel = ({ onChangeType }) => {
       </ul>
     </div>
   );
-};
-
-SortingPanel.propTypes = {
-  onChangeType: PropTypes.func
 };
 
 export default SortingPanel;

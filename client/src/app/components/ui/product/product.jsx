@@ -1,14 +1,13 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { addProduct } from "../../../store/cart";
 import Button from "../../common/button/button";
 import "./product.css";
 
-const Product = ({ name, url, _id, cost, amount }) => {
-  const handleClick = () => {
-    console.log("click");
-  };
-
+const Product = ({ name, url, _id, cost, amount, ...rest }) => {
+  const dispatch = useDispatch();
   return (
     <section className="product">
       <Link className="products__link" to={"/products/" + _id}>
@@ -31,7 +30,12 @@ const Product = ({ name, url, _id, cost, amount }) => {
         <p className="product__amount">Количество: {amount} шт.</p>
       </div>
       <div className="product__button-wrapper">
-        <Button label="В корзину" onClick={handleClick} />
+        <Button
+          label="В корзину"
+          onClick={() =>
+            dispatch(addProduct({ name, url, _id, cost, amount, ...rest }))
+          }
+        />
       </div>
     </section>
   );

@@ -13,6 +13,7 @@ module.exports = {
   },
   plugins: ["react"],
   rules: {
+    indent: ["error", 2],
     "quote-props": ["error", "as-needed"],
     semi: [2, "always"],
     quotes: ["error", "double", { allowTemplateLiterals: true }],

@@ -10,29 +10,22 @@ export function validator(data, config) {
         if (typeof data === "boolean") {
           validateStatus = !data;
         } else if (typeof data === "object") {
-          validateStatus = data.name.trim() === "";
+          validateStatus = data.length === 0;
         } else {
-          validateStatus = data.trim() === "";
+          validateStatus = String(data).trim() === "";
         }
-        break;
-      }
-      case "isEmail": {
-        const emailRegExp = /^\S+@\S+\.\S+$/g;
-        validateStatus = !emailRegExp.test(data);
-        break;
-      }
-      case "isCapitalSymbol": {
-        const capitalRegExp = /[A-Z]/g;
-        validateStatus = !capitalRegExp.test(data);
-        break;
-      }
-      case "isContainDigit": {
-        const digitRegExp = /\d/g;
-        validateStatus = !digitRegExp.test(data);
         break;
       }
       case "isMin": {
         validateStatus = data.length < config.value;
+        break;
+      }
+      case "isDigit": {
+        validateStatus = /\D/.test(Number(data));
+        break;
+      }
+      case "isUrl": {
+        validateStatus = !/https?:\/\/.+/.test(data);
         break;
       }
       default:

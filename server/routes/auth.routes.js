@@ -16,6 +16,7 @@ const isInvalidToken = require("../utils/isInvalidToken");
 router.post("/signUp", [
   check("email", "Email введен некорректно").isEmail(),
   check("password", "Минимальная длина пароля 8 символов").isLength({ min: 8 }),
+  check("name", "Минимальная длина имени 2 символа").isLength({ min: 2 }),
   check(
     "password",
     "Пароль должен содержать хотя бы одну цифру, строчную и заглавную буквы"
@@ -42,7 +43,7 @@ router.post("/signUp", [
       if (existingUser) {
         return res.status(400).json({
           error: {
-            message: "EMAIL_EXIST",
+            message: "EMAIL_EXISTS",
             code: 400
           }
         });

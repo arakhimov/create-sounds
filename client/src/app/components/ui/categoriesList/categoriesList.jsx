@@ -1,21 +1,26 @@
 /* eslint-disable operator-linebreak */
 import React from "react";
-import { useCategories } from "../../../hooks/useCategories";
-import { useProducts } from "../../../hooks/useProducts";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategories } from "../../../store/categories";
+import {
+  getCurrentCategory,
+  setProductCategory
+} from "../../../store/products";
 import Button from "../../common/button/button";
 import "./categoriesList.css";
 
 const CategoriesList = () => {
-  const { categories } = useCategories();
-  const { setProductCategory, selectedCategory } = useProducts();
+  const dispatch = useDispatch();
+  const categories = useSelector(getCategories());
+  const selectedCategory = useSelector(getCurrentCategory());
 
-  const handleClick = (event) => {
+  const handleChangeCategory = (event) => {
     event.preventDefault();
-    setProductCategory(event.currentTarget.dataset.category);
+    dispatch(setProductCategory(event.currentTarget.dataset.category));
   };
 
   const handleResetCategory = () => {
-    setProductCategory(null);
+    dispatch(setProductCategory(null));
   };
 
   return (
@@ -26,8 +31,8 @@ const CategoriesList = () => {
             <li className="categories__item" key={category._id}>
               <a
                 href=""
-                data-category={category._id}
-                onClick={handleClick}
+                data-category={category.categoryId}
+                onClick={handleChangeCategory}
                 className={
                   "categories__link" +
                   (selectedCategory === category._id

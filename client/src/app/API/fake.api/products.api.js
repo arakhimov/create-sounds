@@ -143,7 +143,7 @@ const products = [
     cost: 2000,
     description: "",
     amount: 10,
-    url: "https://gitronik.de/wp-content/uploads/2013/02/JPC1000E_web_original.jpg"
+    url: "https://avatars.mds.yandex.net/i?id=efcc7e3983998c9f1116ac708687c81c-4908127-images-thumbs&n=13&exp=1"
   },
   {
     _id: "50136824",
@@ -152,7 +152,7 @@ const products = [
     cost: 2000,
     description: "",
     amount: 4,
-    url: "https://muzhouse.ru/image/cache/catalog/img_3/888880018894-269-700x700.jpg"
+    url: "https://pop-music.ru/upload/iblock/6f2/6f2500b2348aea1b0e01550871dde14b.jpg"
   },
   {
     _id: "85946615",
@@ -170,7 +170,7 @@ const products = [
     cost: 900,
     description: "",
     amount: 5,
-    url: "https://skifmusic.ru/thumbs/ae/1d/500x500_1_normal_17f431e7c7a35173dace3d56a1be.jpg"
+    url: "https://avatars.mds.yandex.net/i?id=40531306b52902158b560f0b4e21845d-5694385-images-thumbs&n=13&exp=1"
   },
   {
     _id: "19815340",
@@ -269,7 +269,7 @@ const products = [
     cost: 2600,
     description: "",
     amount: 3,
-    url: "https://muzhouse.ru/image/cache/catalog/img_1/mi-1261740667-yamaha_sv-130_bl-700x700.jpg"
+    url: "https://skifmusic.ru/static/catalog/683-elektroviolonchel-ec8cad.jpg"
   },
   {
     _id: "53106549",

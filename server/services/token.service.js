@@ -26,12 +26,21 @@ class TokenServise {
     return token;
   }
 
+  // валидация accessToken
+  validateAccess(accessToken) {
+    try {
+      return jwt.verify(accessToken, config.get("secureAccessToken"));
+    } catch (error) {
+      return null;
+    }
+  }
+
   // валидация refreshToken
   validateRefresh(refreshToken) {
     try {
       return jwt.verify(refreshToken, config.get("secureRefreshToken"));
     } catch (error) {
-      null;
+      return null;
     }
   }
 

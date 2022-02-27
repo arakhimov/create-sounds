@@ -1,0 +1,9 @@
+.productsTable__column:hover {
+  background-color: rgb(225, 234, 241);
+}
+
+.productsTable__button:hover .productsTable__icon {
+  fill: firebrick;
+  transform: scale(1.15);
+  transition: transform 0.2s;
+}

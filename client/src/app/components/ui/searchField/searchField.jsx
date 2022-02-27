@@ -1,12 +1,15 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { useProducts } from "../../../hooks/useProducts";
+import { useDispatch, useSelector } from "react-redux";
+import { getSearchField, setSearchField } from "../../../store/products";
 import "./searchField.css";
 
-const SearchField = ({ name, value, placeholder, onChange }) => {
-  const { searchField, changeSearchField } = useProducts();
+const SearchField = ({ name, placeholder }) => {
+  const dispatch = useDispatch();
+  const searchField = useSelector(getSearchField());
+
   const handleChange = ({ target }) => {
-    changeSearchField(target.value);
+    dispatch(setSearchField(target.value));
   };
 
   return (

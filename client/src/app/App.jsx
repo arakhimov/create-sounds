@@ -1,3 +1,4 @@
+/* eslint-disable multiline-ternary */
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -5,21 +6,25 @@ import "react-toastify/dist/ReactToastify.css";
 import "./app.css";
 import Logo from "./components/ui/logo/logo";
 import NavBar from "./components/ui/navBar/navBar";
+import ProtectedRoute from "./components/ui/protectedRoute/protectedRoute";
 import SearchField from "./components/ui/searchField/searchField";
-import { CategoriesProvider } from "./hooks/useCategories";
-import { DescriptionProvider } from "./hooks/useDescription";
-import { ProductsProvider } from "./hooks/useProducts";
 import routes from "./routes";
 
 const getRoutes = (routes) => {
   return routes.map(({ path, Component }, ind) => {
-    return <Route path={path} component={Component} key={ind} />;
+    // для страницы редактирования добавляем ProtectedRoute
+    return /\/edit/.test(path) ? (
+      <ProtectedRoute path={path} key={ind} component={Component} />
+    ) : (
+      <Route path={path} component={Component} key={ind} />
+    );
+    // return <Route path={path} component={Component} key={ind} />;
   });
 };
 
 function App() {
   return (
-    <ProductsProvider>
+    <>
       <header className="header">
         <div className="header__wrapper">
           <Logo />
@@ -31,15 +36,8 @@ function App() {
         <NavBar />
       </header>
       <ToastContainer />
-      <Switch>
-        <CategoriesProvider>
-          <DescriptionProvider>
-            {/* <Redirect to="/products" /> */}
-            {getRoutes(routes)}
-          </DescriptionProvider>
-        </CategoriesProvider>
-      </Switch>
-    </ProductsProvider>
+      <Switch>{getRoutes(routes)}</Switch>
+    </>
   );
 }
 

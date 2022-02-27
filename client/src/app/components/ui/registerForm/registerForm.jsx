@@ -1,11 +1,14 @@
 /* eslint-disable max-len */
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthError, signUp } from "../../../store/users";
 import { validator } from "../../../utils/validator";
 import CheckBoxField from "../../common/form/checkBoxField";
 import RadioField from "../../common/form/radioField";
 import TextField from "../../common/form/textField";
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
   const [data, setData] = useState({
     email: "",
     name: "",
@@ -14,7 +17,10 @@ const RegisterForm = () => {
     license: false
   });
   const [errors, setErrors] = useState({});
+
   useEffect(() => validate(), [data]);
+
+  const authError = useSelector(getAuthError());
 
   const handleChange = (target) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));
@@ -66,6 +72,7 @@ const RegisterForm = () => {
     if (!isValid) {
       return;
     }
+    dispatch(signUp(data));
   };
 
   return (
@@ -114,6 +121,7 @@ const RegisterForm = () => {
           Подтвердить <a href="">лицензионное соглашение</a>
         </p>
       </CheckBoxField>
+      {authError && <p className="text-danger">{authError}</p>}
 
       <button
         className="btn btn-primary w-25"

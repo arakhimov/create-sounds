@@ -1,32 +1,33 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { PRODUCTS_PER_PAGE } from "../../../constants";
-import { useProducts } from "../../../hooks/useProducts";
+import { getCurrentPage, getFilteredProducts } from "../../../store/products";
 import Pagination from "../../common/pagination/pagination";
 import Product from "../../ui/product/product";
 import SortingPanel from "../../ui/sorttingPanel/sortingPanel";
 import "./productListPage.css";
 
 const ProductListPage = () => {
-  const {
-    currentPageProducts: products,
-    filteredProducts,
-    currentPage,
-    handleChangeCurrentPage,
-    changeSortType
-  } = useProducts();
+  const products = useSelector(getFilteredProducts());
+  const currentPageNumber = useSelector(getCurrentPage());
+
+  const startIndex = (currentPageNumber - 1) * PRODUCTS_PER_PAGE;
+  const endIndex = startIndex + PRODUCTS_PER_PAGE;
+  const currentPageProducts = products.slice(startIndex, endIndex);
 
   return (
     <div className="products-catalog">
-      <SortingPanel onChangeType={changeSortType} />
+      <SortingPanel />
       <ul className="products-catalog__list">
         {products &&
-          products.map((product) => <Product key={product._id} {...product} />)}
+          currentPageProducts.map((product) => (
+            <Product key={product._id} {...product} />
+          ))}
       </ul>
       <Pagination
-        items={filteredProducts.length}
+        items={products.length}
         pageSize={PRODUCTS_PER_PAGE}
-        currentPage={currentPage}
-        onChangePage={handleChangeCurrentPage}
+        currentPage={currentPageNumber}
       />
     </div>
   );

@@ -1,8 +1,6 @@
-## react-messenger
+## create-sounds
 
 #### учебный проект Result.School Владилена Минина
-
-## https://arakhimov.github.io/create-sounds/
 
 ### Версия 0.0.1
 
@@ -47,7 +45,7 @@
 
 - git clone git@github.com:arakhimov/create-sounds.git
 - npm install
-- cd server/
+- cd server
 - npm start
 - cd client
 - npm start

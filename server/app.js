@@ -16,14 +16,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api", routes);
 
-// console.log(process.env.NODE_ENV);
-
-// if (process.env.NODE_ENV === "production") {
-//   console.log("Production");
-// } else {
-//   console.log("Development");
-// }
-
 if (process.env.NODE_ENV === "production") {
   app.use("/", express.static(path.join(__dirname, "client")));
   const indexPath = path.join(__dirname, "client", "index.html");

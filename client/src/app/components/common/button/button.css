@@ -5,9 +5,13 @@
   color: #fff;
   padding: 10px 15px;
   border-radius: 10px;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .button:hover,
 .button:focus {
-  opacity: 0.8;
+  color: #192144;
+  background-color: #fff;
+  border: 1px solid #192144;
 }

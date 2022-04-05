@@ -2,6 +2,7 @@
 /* eslint-disable multiline-ternary */
 import PropTypes from "prop-types";
 import React, { useState } from "react";
+import "./textField.css";
 
 const TextField = ({ label, type, name, value, onChange, error }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -9,15 +10,18 @@ const TextField = ({ label, type, name, value, onChange, error }) => {
   const handleShowPassword = () => setShowPassword((prevState) => !prevState);
 
   const handleChange = ({ target }) => {
+    if (type === "phone" && !Boolean(Number(target.value))) {
+      return;
+    }
     onChange({ name: target.name, value: target.value });
   };
 
   return (
-    <div className="mb-4">
-      <label className="form-label mb-2" htmlFor={name}>
+    <div className="textField mb-1">
+      <label className="form-label mb-1" htmlFor={name}>
         {label}
       </label>
-      <div className="input-group has-validation">
+      <div className="textField__container input-group has-validation">
         <input
           type={showPassword ? "text" : type}
           id={name}
@@ -25,7 +29,9 @@ const TextField = ({ label, type, name, value, onChange, error }) => {
           value={value}
           onChange={handleChange}
           autoComplete="off"
-          className={`form-control ${error ? "is-invalid" : "is-valid"}`}
+          className={`form-control ${
+            error ? "is-invalid" : error === null ? "" : "is-valid"
+          }`}
         />
         {type === "password" && (
           <button
@@ -61,7 +67,9 @@ const TextField = ({ label, type, name, value, onChange, error }) => {
             )}
           </button>
         )}
-        {error && <p className="invalid-feedback">{error}</p>}
+        {error && (
+          <p className="textField__error-message invalid-feedback">{error}</p>
+        )}
       </div>
     </div>
   );

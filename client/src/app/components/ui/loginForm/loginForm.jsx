@@ -5,16 +5,21 @@ import { getAuthError, login } from "../../../store/users";
 import history from "../../../utils/history";
 import { validator } from "../../../utils/validator";
 import CheckBoxField from "../../common/form/checkBoxField";
-import TextField from "../../common/form/textField";
+import TextField from "../../common/form/textField/textField";
+import "./loginForm.css";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const [data, setData] = useState({ email: "", password: "", stayOn: false });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({ email: null, password: null });
 
   const authError = useSelector(getAuthError());
 
-  useEffect(() => validate(), [data]);
+  useEffect(() => {
+    if (data.email !== "" || data.password !== "") {
+      return validate();
+    }
+  }, [data]);
 
   const handleChange = (target) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));
@@ -40,6 +45,7 @@ const LoginForm = () => {
 
   const validate = () => {
     const validateErrors = validator(data, validatorConfig);
+    // console.log(validateErrors);
     setErrors(validateErrors);
 
     return Object.keys(validateErrors).length === 0;
@@ -60,28 +66,40 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
-        label="Электронная почта"
-        name="email"
-        value={data.email}
-        onChange={handleChange}
-        error={errors.email}
-      />
-      <TextField
-        label="Пароль"
-        type="password"
-        name="password"
-        value={data.password}
-        onChange={handleChange}
-        error={errors.password}
-      />
-      <CheckBoxField name="stayOn" value={data.stayOn} onChange={handleChange}>
-        <p className="mb-0">Оставаться в системе</p>
-      </CheckBoxField>
-      {authError && <p className="text-danger">{authError}</p>}
+    <form className="loginForm" onSubmit={handleSubmit}>
+      <div className="loginForm__container">
+        <TextField
+          label="Электронная почта"
+          name="email"
+          value={data.email}
+          onChange={handleChange}
+          error={errors.email}
+        />
+        <TextField
+          label="Пароль"
+          type="password"
+          name="password"
+          value={data.password}
+          onChange={handleChange}
+          error={errors.password}
+        />
+        <CheckBoxField
+          name="stayOn"
+          value={data.stayOn}
+          onChange={handleChange}
+        >
+          <p className="mb-0">Оставаться в системе</p>
+        </CheckBoxField>
+        {authError && (
+          <p className="loginForm__error-message text-danger">{authError}</p>
+        )}
+      </div>
 
-      <button className="btn btn-primary" type="submit" disabled={!isValid}>
+      <button
+        className="loginForm__submit btn"
+        type="submit"
+        disabled={!isValid}
+      >
         Отправить
       </button>
     </form>

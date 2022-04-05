@@ -28,6 +28,14 @@ export function validator(data, config) {
         validateStatus = !/https?:\/\/.+/.test(data);
         break;
       }
+      case "isEmail": {
+        validateStatus = !/\w{2,}@\w{2,}\.\w{2,}/.test(data);
+        break;
+      }
+      case "isPhone": {
+        validateStatus = !/\+7|8\d{10}/.test(data);
+        break;
+      }
       default:
         break;
     }

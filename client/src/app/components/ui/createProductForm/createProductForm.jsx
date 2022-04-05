@@ -8,7 +8,7 @@ import { validator } from "../../../utils/validator";
 import validatorConfig from "../../../utils/validatorConfigProducts";
 import MultiSelectField from "../../common/form/multiSelectField";
 import TextAreaField from "../../common/form/textAreaField";
-import TextField from "../../common/form/textField";
+import TextField from "../../common/form/textField/textField";
 import "./createProductForm.css";
 
 const CreateProductForm = ({ redirect }) => {

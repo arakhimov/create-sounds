@@ -1,11 +1,10 @@
-.login__submit {
+.login__sign {
   color: #000;
   text-decoration: none;
 }
 
-.login__submit:active,
-.login__submit:hover,
-.login__submit:focus {
+.login__sign:active,
+.login__sign:hover,
+.login__sign:focus {
   color: firebrick;
-  text-decoration: underline;
 }

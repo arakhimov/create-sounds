@@ -12,8 +12,8 @@
 .nav__link {
   text-decoration: none;
   color: #000;
-  text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 900;
+  font-size: 16px;
   display: flex;
   align-items: center;
 }
@@ -23,7 +23,13 @@
 .nav__link:hover,
 .nav__link:focus {
   color: firebrick;
-  text-decoration: underline;
+}
+
+.nav__link--active .nav__amount,
+.nav__link:active .nav__amount,
+.nav__link:hover .nav__amount,
+.nav__link:focus .nav__amount {
+  background-color: firebrick;
 }
 
 .nav__link:active {
@@ -38,16 +44,16 @@
   background-repeat: no-repeat;
 }
 
-.nav__link--cart::before {
-  width: 10px;
-  height: 14px;
-  background-image: url(../../../assets/img/cart-header.svg);
-  background-position: left 1px;
-}
-
-.nav__link--login::before {
-  width: 10px;
-  height: 14px;
-  background-image: url(../../../assets/img/into-header.svg);
-  background-position: left 1px;
+.nav__amount {
+  margin-left: 10px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #192144;
+  color: #fff;
+  font-weight: bolder;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -26,29 +26,12 @@ const NavBar = () => {
         </li>
         <li className="nav__list-item">
           <NavLink to="/cart" className="nav__link nav__link--cart">
-            <span className="text-primary me-2">{`${
-              productsInCart === 0 ? "" : productsInCart
-            }`}</span>
             Корзина
-            {/* // {`${productsInCart === 0 ? "" : productsInCart} Корзина`} */}
+            {productsInCart !== 0 && (
+              <span className="nav__amount">{productsInCart}</span>
+            )}
           </NavLink>
         </li>
-        {/* {routes.map((route, ind) => {
-          if (route.display !== false) {
-            return (
-              <li key={ind} className="nav__list-item">
-                <NavLink
-                  activeClassName="nav__link--active"
-                  className={"nav__link nav__link--" + route.path.slice(1)}
-                  to={route.path}
-                >
-                  {route.name}
-                </NavLink>
-              </li>
-            );
-          }
-          return null;
-        })} */}
         <li className="nav__list-item">
           {currentUser ? (
             <NavProfile />

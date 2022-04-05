@@ -32,6 +32,11 @@
   text-decoration: none;
 }
 
+.product__title:hover,
+.product__title:focus {
+  color: firebrick;
+}
+
 .products__link {
   text-decoration: none;
 }

@@ -36,7 +36,7 @@ const cartSlice = createSlice({
     cartProductAdded: (state, action) => {
       state.entities = action.payload;
     },
-    cartProductRemoved: (state, action) => {
+    cartProductChanged: (state, action) => {
       state.entities = action.payload;
     },
     cartCleaned: (state) => {
@@ -51,7 +51,7 @@ export const {
   cartRecieved,
   cartRequestFailed,
   cartProductAdded,
-  cartProductRemoved,
+  cartProductChanged,
   cartCleaned
 } = actions;
 
@@ -59,9 +59,9 @@ const cartProductAddRequest = createAction("cart/cartProductAddRequest");
 const cartProductAddRequestFailed = createAction(
   "cart/cartProductAddRequestFailed"
 );
-const cartProductRemoveRequest = createAction("cart/cartProductRemoveRequest");
-const cartProductRemoveRequestFailed = createAction(
-  "cart/cartProductRemoveRequestFailed"
+const cartProductChangeRequest = createAction("cart/cartProductChangeRequest");
+const cartProductChangeRequestFailed = createAction(
+  "cart/cartProductChangeRequestFailed"
 );
 const cartCleanRequested = createAction("cart/cartCleanRequested");
 const cartCleanRequestFailed = createAction("cart/cartCleanRequestFailed");
@@ -102,38 +102,44 @@ export const addProduct = (data) => async (dispatch) => {
 
 // удаление продукта из корзины
 export const removeProduct = (productId) => async (dispatch) => {
-  dispatch(cartProductRemoveRequest());
+  dispatch(cartProductChangeRequest());
   try {
     const localCart = JSON.parse(localStorageService.getCartproducts());
     const updateCart = localCart.filter(
       (product) => product.productId !== productId
     );
     localStorageService.setCartproducts(JSON.stringify(updateCart));
-    dispatch(cartProductRemoved(updateCart));
+    dispatch(cartProductChanged(updateCart));
   } catch (error) {
-    dispatch(cartProductRemoveRequestFailed(error.message));
+    dispatch(cartProductChangeRequestFailed(error.message));
   }
 };
 
 // измениние количества инструментов в корзине
-export const changeProductAmount = (productId, method) => async (dispatch) => {
-  dispatch(cartProductRemoveRequest());
-  try {
-    const localCart = JSON.parse(localStorageService.getCartproducts());
-    const productIndex = localCart.findIndex(
-      (product) => product.productId === productId
-    );
-    if (method === "add") {
-      localCart[productIndex].amount++;
-    } else {
-      localCart[productIndex].amount--;
+export const changeProductAmount =
+  (productId, method) => async (dispatch, getState) => {
+    dispatch(cartProductChangeRequest());
+    try {
+      const localCart = await JSON.parse(localStorageService.getCartproducts());
+      const productIndex = localCart.findIndex(
+        (product) => product.productId === productId
+      );
+      if (method === "add") {
+        const availableAmount = getState().products.entities.find(
+          (product) => product._id === productId
+        )?.amount;
+        // ограничиваем количеством, имеющимся в наличии
+        localCart[productIndex].amount < availableAmount &&
+          localCart[productIndex].amount++;
+      } else {
+        localCart[productIndex].amount--;
+      }
+      localStorageService.setCartproducts(JSON.stringify(localCart));
+      dispatch(cartProductChanged(localCart));
+    } catch (error) {
+      dispatch(cartProductChangeRequestFailed(error.message));
     }
-    localStorageService.setCartproducts(JSON.stringify(localCart));
-    dispatch(cartProductRemoved(localCart));
-  } catch (error) {
-    dispatch(cartProductRemoveRequestFailed(error.message));
-  }
-};
+  };
 
 // очищение корзины
 export const cleanCart = () => async (dispatch) => {
@@ -148,7 +154,7 @@ export const cleanCart = () => async (dispatch) => {
 
 // получение количества товаров в корзине
 export const getCartAmount = () => (state) => {
-  return state.cart.entities?.reduce((acc, val) => acc + val.amount, 0) || 0;
+  return state.cart.entities?.length || 0;
 };
 
 // получение итоговой стоимости товаров в корзине

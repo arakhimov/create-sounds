@@ -2,6 +2,7 @@
   display: flex;
   flex-grow: 2;
   flex-direction: column;
+  justify-content: flex-end;
   background-color: #fff;
   border-radius: 20px;
   overflow: hidden;
@@ -9,17 +10,18 @@
   color: #192144;
 }
 
-.summaryPanel:hover,
+/* .summaryPanel:hover,
 .summaryPanel:focus {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
+} */
 
 .summaryPanel__cost-wrapper {
   margin-bottom: 40px;
 }
 
-.summaryPanel__cost,
-.summaryPanel__cost-sum {
+.summaryPanel__cost {
+  display: flex;
+  justify-content: flex-end;
   font-weight: 600;
   color: #192144;
   text-decoration: none;
@@ -28,5 +30,28 @@
 }
 
 .summaryPanel__cost-sum {
-  color: steelblue;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.summaryPanel__button-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.summaryPanel__button {
+  background-color: #192144;
+  align-self: flex-end;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bolder;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.summaryPanel__button:hover,
+.summaryPanel__button:focus {
+  color: #192144;
+  background-color: #fff;
+  border: 1px solid #192144;
 }

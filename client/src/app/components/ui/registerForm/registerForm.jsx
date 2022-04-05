@@ -5,20 +5,36 @@ import { getAuthError, signUp } from "../../../store/users";
 import { validator } from "../../../utils/validator";
 import CheckBoxField from "../../common/form/checkBoxField";
 import RadioField from "../../common/form/radioField";
-import TextField from "../../common/form/textField";
+import TextField from "../../common/form/textField/textField";
+import "./registerForm.css";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const [data, setData] = useState({
     email: "",
     name: "",
+    phone: "",
     password: "",
     sex: "male",
     license: false
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+    email: null,
+    name: null,
+    password: null,
+    phone: null
+  });
 
-  useEffect(() => validate(), [data]);
+  useEffect(() => {
+    if (
+      data.email !== "" ||
+      data.name ||
+      data.password !== "" ||
+      data.phone !== ""
+    ) {
+      return validate();
+    }
+  }, [data]);
 
   const authError = useSelector(getAuthError());
 
@@ -30,6 +46,10 @@ const RegisterForm = () => {
     email: {
       isRequired: { message: "Электронная почта обязательна для заполнения" },
       isEmail: { message: "Электронная почта введена некорректно" }
+    },
+    phone: {
+      isRequired: { message: "Телефон обязателен для заполнения" },
+      isPhone: { message: "Введите номер телефона в формате: 8 XXX XXX XX XX" }
     },
     name: {
       isRequired: { message: "Имя обязательно для заполнения" },
@@ -76,7 +96,14 @@ const RegisterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="registerForm" onSubmit={handleSubmit}>
+      <TextField
+        label="Имя"
+        name="name"
+        value={data.name}
+        onChange={handleChange}
+        error={errors.name}
+      />
       <TextField
         label="Электронная почта"
         name="email"
@@ -85,11 +112,12 @@ const RegisterForm = () => {
         error={errors.email}
       />
       <TextField
-        label="Имя"
-        name="name"
-        value={data.name}
+        label="Телефон"
+        name="phone"
+        type="phone"
+        value={data.phone}
         onChange={handleChange}
-        error={errors.name}
+        error={errors.phone}
       />
       <TextField
         label="Пароль"
@@ -124,7 +152,7 @@ const RegisterForm = () => {
       {authError && <p className="text-danger">{authError}</p>}
 
       <button
-        className="btn btn-primary w-25"
+        className="btn registerForm__submit"
         type="submit"
         disabled={!isValid}
       >

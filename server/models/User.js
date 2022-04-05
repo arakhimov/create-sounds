@@ -2,9 +2,10 @@ const { Schema, model } = require("mongoose");
 
 const schema = new Schema(
   {
-    name: String,
+    name: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
-    password: String,
+    phone: { type: String, required: true, unique: true },
+    password: { type: String, required: true, unique: true },
     image: String,
     // isAdmin: Boolean,
     sex: { type: String, enum: ["male", "female", "other"] }

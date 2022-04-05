@@ -32,7 +32,6 @@ const AppLoader = ({ children }) => {
   useEffect(() => {
     if (authStatus && authStatus.userId !== "undefined") {
       dispatch(loadCurrentUserData());
-      // dispatch(loadCartList(authStatus.userId));
     }
   }, []);
 

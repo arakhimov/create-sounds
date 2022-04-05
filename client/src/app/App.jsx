@@ -1,5 +1,5 @@
 /* eslint-disable multiline-ternary */
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,7 +23,12 @@ const getRoutes = (routes) => {
 
 function App() {
   const history = useHistory();
-  history.push("/products");
+
+  useEffect(() => {
+    if (history.location.pathname === "/") {
+      history.push("/products");
+    }
+  }, []);
 
   return (
     <>

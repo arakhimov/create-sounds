@@ -122,7 +122,7 @@ router.post("/signInWithPassword", [
       );
       if (!isPasswordEqual) {
         return res.status(400).json({
-          errorr: {
+          error: {
             message: "INVALID_PASSWORD",
             code: 400
           }

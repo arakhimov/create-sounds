@@ -1,0 +1,15 @@
+.registerForm__submit {
+  background-color: #192144;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+.registerForm__submit:hover,
+.registerForm__submit:focus {
+  background-color: #fff;
+  color: #192144;
+  border: 1px solid #192144;
+}
